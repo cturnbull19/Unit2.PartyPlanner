@@ -59,8 +59,9 @@ function renderEvents(){
         element.appendChild(date);
         element.appendChild(location);
 
-        return element
+        //return element
+        eventContainer.appendChild(element);
     });
 
-    eventContainer.replaceChildren(...eventElements);
+    //eventContainer.replaceChildren(...eventElements);
 }
