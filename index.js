@@ -8,11 +8,35 @@ const eventList = document.querySelector('#events');
 
 const addEventForm = document.querySelector('#addEvent');
 
-function render(){
+async function render() {
+    await getEvents();
+    renderEvents();
+}
+render()
+
+async function getEvents() {
+    try {
+        const response = await fetch(API_URL);
+        const json = await response.json();
+        console.log(json)
+        state.events = json.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+function renderEvents(){
+    
+    if (!state.events.length){
+        const eventList = document.createElement("td")
+        eventList.textContent = "No events :( ";
+        return;
+    }
     const eventContainer = document.querySelector("#events");
     console.log(eventContainer)
 
-    const eventElements = events.map((event) => {
+    const eventElements = state.events.map((event) => {
         const name = document.createElement("td");
         const nameText = document.createTextNode(event.name);
         name.appendChild(nameText);
@@ -27,13 +51,14 @@ function render(){
 
         const location = document.createElement("td");
         const locationText = document.createTextNode(event.location);
-        location.appendChild(locationText)
+        location.appendChild(locationText);
 
-        element.appendChild(name);
-        element.appendChild(description);
-        element.appendChild(date);
+        // name.appendChild(name);
+        // name.appendChild(description);
+        // name.appendChild(date);
+        // name.appendChild(location);
 
-        return element
+        return name
     });
 
     eventContainer.replaceChildren(...eventElements);
