@@ -48,12 +48,14 @@ function renderEvents(){
         
         
         const date = document.createElement("td");
-        const dateText = document.createTextNode(event.date);
-        date.appendChild(dateText);
+        const dateText = event.date.split('T');
+        const dateString = dateText[0];
+        let newDate = new Date(dateString).toLocaleString();
+        const dateOnly = document.createTextNode(newDate);
+        date.appendChild(dateOnly);
 
         const time = document.createElement("td");
-        const timeText = event.date.split('T');
-        const timeString = timeText[1];
+        const timeString = dateText[1];
         const timeOnly = document.createTextNode(timeString)
         time.appendChild(timeOnly);
 
