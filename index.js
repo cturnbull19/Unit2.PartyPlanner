@@ -37,6 +37,7 @@ function renderEvents(){
     console.log(eventContainer)
 
     const eventElements = state.events.map((event) => {
+        const element = document.createElement("tr")
         const name = document.createElement("td");
         const nameText = document.createTextNode(event.name);
         name.appendChild(nameText);
@@ -53,12 +54,12 @@ function renderEvents(){
         const locationText = document.createTextNode(event.location);
         location.appendChild(locationText);
 
-        // name.appendChild(name);
-        // name.appendChild(description);
-        // name.appendChild(date);
-        // name.appendChild(location);
+        element.appendChild(name);
+        element.appendChild(description);
+        element.appendChild(date);
+        element.appendChild(location);
 
-        return name
+        return element
     });
 
     eventContainer.replaceChildren(...eventElements);
