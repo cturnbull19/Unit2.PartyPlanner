@@ -46,9 +46,16 @@ function renderEvents(){
         const descriptionText = document.createTextNode(event.description);
         description.appendChild(descriptionText);
         
+        
         const date = document.createElement("td");
         const dateText = document.createTextNode(event.date);
         date.appendChild(dateText);
+
+        const time = document.createElement("td");
+        const timeText = event.date.split('T');
+        const timeString = timeText[1];
+        const timeOnly = document.createTextNode(timeString)
+        time.appendChild(timeOnly);
 
         const location = document.createElement("td");
         const locationText = document.createTextNode(event.location);
@@ -57,11 +64,10 @@ function renderEvents(){
         element.appendChild(name);
         element.appendChild(description);
         element.appendChild(date);
+        element.appendChild(time);
         element.appendChild(location);
 
-        //return element
         eventContainer.appendChild(element);
     });
 
-    //eventContainer.replaceChildren(...eventElements);
 }
