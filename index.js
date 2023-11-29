@@ -50,7 +50,7 @@ function renderEvents(){
         const date = document.createElement("td");
         const dateText = event.date.split('T');
         const dateString = dateText[0];
-        let newDate = new Date(dateString).toLocaleString();
+        const newDate = new Date(dateString).toLocaleDateString();
         const dateOnly = document.createTextNode(newDate);
         date.appendChild(dateOnly);
 
