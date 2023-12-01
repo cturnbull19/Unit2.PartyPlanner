@@ -113,6 +113,7 @@ function renderEvents(){
 //     }
 // }
 
+
 async function deleteEvent(id) {
     try {
         const response = await fetch(`${API_URL}/${id}`, {
