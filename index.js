@@ -6,8 +6,8 @@ const state = {
 
 const eventList = document.querySelector('#events');
 
-const addEventForm = document.querySelector('#addEvent');
-addEventForm.addEventListener("submit", addEvent);
+//const addEventForm = document.querySelector('#addEvent');
+//addEventForm.addEventListener("submit", addEvent);
 
 async function render() {
     await getEvents();
@@ -92,6 +92,8 @@ function renderEvents(){
 async function addEvent(event) {
     event.preventDefault();
 
+    const addEventForm = document.querySelector('#addEvent')
+
     try{
         const response = await fetch(API_URL, {
             method: "POST",
@@ -99,7 +101,7 @@ async function addEvent(event) {
             body: JSON.stringify({
                 name: addEventForm.name.value,
                 description: addEventForm.description.value,
-                date: addEventForm.date.value,
+                date: new Date(addEventForm.date.value),
                 location: addEventForm.location.value,
             }),
         });
@@ -126,3 +128,18 @@ async function deleteEvent(id) {
           console.error(error)
         }
       }
+
+window.onload = () => { 
+    const addEventForm = document.querySelector('#addEvent');
+    addEventForm.addEventListener("submit", addEvent);
+    }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
