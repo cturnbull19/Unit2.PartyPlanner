@@ -36,9 +36,11 @@ function renderEvents(){
     const eventContainer = document.querySelector("#events");
     console.log(eventContainer)
 
-    const eventElements = state.events.map((event) => {
+    //const eventElements = 
+    state.events.map((event) => {
         const element = document.createElement("tr")
         const name = document.createElement("td");
+        //might need to add name.classList.add('') because this will tag a class to all the elements td so that we can edit them in CSS
         const nameText = document.createTextNode(event.name);
         name.appendChild(nameText);
 
@@ -63,11 +65,17 @@ function renderEvents(){
         const locationText = document.createTextNode(event.location);
         location.appendChild(locationText);
 
+        const tblButton = document.createElement("td")
+        const deleteButton = document.createElement("button")
+        deleteButton.textContent = "Delete Event"
+        tblButton.appendChild(deleteButton)
+
         element.appendChild(name);
         element.appendChild(description);
         element.appendChild(date);
         element.appendChild(time);
         element.appendChild(location);
+        element.appendChild(tblButton)
 
         eventContainer.appendChild(element);
     });
