@@ -7,7 +7,7 @@ const state = {
 const eventList = document.querySelector('#events');
 
 const addEventForm = document.querySelector('#addEvent');
-//addEventForm.addEventListener("submit", addEvent);
+addEventForm.addEventListener("submit", addEvent);
 
 async function render() {
     await getEvents();
@@ -79,39 +79,40 @@ function renderEvents(){
        element.appendChild(tblButton);
        
        //eventContainer.appendChild(element)
-
+       
     deleteButton.addEventListener("click", () => deleteEvent(event.id))
         return element
     });
-
+    
 
     //table.appendChild(element)
     eventContainer.replaceChildren(...table);
 }
 
-// async function addEvent(event) {
-//     event.preventDefault();
+async function addEvent(event) {
+    event.preventDefault();
 
-//     try{
-//         const response = await fetch(API_URL, {
-//             method: "POST",
-//             headers: {"Content-Type": "application/json"},
-//             body: JSON.stringify({
-//                 name: addEventForm.name.value,
-//                 description: addEventForm.description.value,
-//                 date: addEventForm.date.value,
-//                 location: addEventForm.location.value,
-//             }),
-//         });
-//         if (!response.ok) {
-//             throw new Error("Failed to add Event");
-//         }
-//         render();
+    try{
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                name: addEventForm.name.value,
+                description: addEventForm.description.value,
+                date: addEventForm.date.value,
+                location: addEventForm.location.value,
+            }),
+        });
+        if (!response.ok) {
+            throw new Error("Failed to add Event");
+        }
+        render();
 
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+    } catch (error) {
+        console.error(error);
+    }
+    
+}
 
 
 async function deleteEvent(id) {
