@@ -1,0 +1,24 @@
+div {
+    display: flex;
+    padding-right: 10px;
+}
+
+#name {
+    padding-right: 60px;
+}
+
+#description {
+    padding-right: 100px;
+}
+
+#date {
+    padding-right: 30px;
+}
+
+#location {
+    padding-right: 60px;
+}
+
+#time {
+    padding-right: 30px;
+}
